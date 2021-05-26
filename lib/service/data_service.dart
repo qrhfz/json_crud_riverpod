@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_crud/model/post_model.dart';
 
 class DataService {
@@ -21,3 +22,5 @@ class DataService {
     }
   }
 }
+
+final dataServiceProvider = Provider<DataService>((ref) => DataService());
