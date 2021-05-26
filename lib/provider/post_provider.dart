@@ -9,7 +9,16 @@ final postProvider =
 });
 
 class PostNotifier extends StateNotifier<List<PostModel>> {
-  var _dataService;
+  final DataService _dataService;
 
-  PostNotifier(this._dataService) : super([]);
+  PostNotifier(this._dataService) : super([]) {
+    getReadPost();
+  }
+
+  Future getReadPost() async {
+    var newState = await _dataService.readPost();
+    if (mounted) {
+      state = newState;
+    }
+  }
 }
