@@ -27,6 +27,29 @@ class DataService {
       throw new CustomException(message: 'Error gan');
     }
   }
+
+  Future createPost(PostModel post) async {
+    try {
+      var response = await dio.post(
+        '/posts',
+        data: {
+          'title': post.title,
+          'body': post.body,
+          'userId': 1,
+        },
+        options: Options(
+          responseType: ResponseType.plain,
+          headers: {'Content-type': 'application/json; charset=UTF-8'},
+        ),
+      );
+
+      print('Respons create: ' + response.toString());
+    } on DioError catch (_) {
+      throw new CustomException(message: 'Dio Error gan');
+    } on Exception catch (_) {
+      throw new CustomException(message: 'Error gan');
+    }
+  }
 }
 
 final dataServiceProvider = Provider<DataService>((ref) => DataService());
