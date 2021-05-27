@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:json_crud/model/post_model.dart';
@@ -14,6 +15,8 @@ class _MyHomePageState extends State<MyHomePage> {
   DataService dataService = DataService();
   List<PostModel> dataPost = [];
 
+<<<<<<< HEAD
+=======
   @override
   void initState() {
     // TODO: implement initState
@@ -25,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+>>>>>>> parent of 9bbf324 (PostListView widget)
   @override
   Widget build(BuildContext context) {
     return Scaffold(

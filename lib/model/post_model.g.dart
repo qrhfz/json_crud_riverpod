@@ -6,6 +6,7 @@ part of 'post_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$_PostModel _$_$_PostModelFromJson(Map<String, dynamic> json) {
   return _$_PostModel(
     userId: json['userId'] as int?,
@@ -15,6 +16,7 @@ _$_PostModel _$_$_PostModelFromJson(Map<String, dynamic> json) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$_$_PostModelToJson(_$_PostModel instance) =>
     <String, dynamic>{
       'userId': instance.userId,
