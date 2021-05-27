@@ -19,7 +19,9 @@ class PostNotifier extends StateNotifier<List<PostModel>> {
     try {
       var newState = await _dataService.readPost();
       if (mounted) {
-        state = newState;
+        if ((newState.isNotEmpty)) {
+          state = newState;
+        }
       }
     } on Exception catch (e) {
       print(e);

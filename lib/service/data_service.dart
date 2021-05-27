@@ -11,13 +11,9 @@ class DataService {
 
   Future<List<PostModel>> readPost() async {
     try {
-      var response = await dio.get('/asu/babi/taikucing',
+      var response = await dio.get('/postsa',
           options: Options(
             responseType: ResponseType.plain,
-            followRedirects: false,
-            validateStatus: (status) {
-              return status! < 500;
-            },
           ));
 
       var jsonRes = json.decode(response.toString());
@@ -26,7 +22,6 @@ class DataService {
       print(e);
       return [];
     }
-    //return empty list (you can also return custom error to be handled by Future Builder)
   }
 }
 

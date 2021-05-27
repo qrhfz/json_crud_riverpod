@@ -49,7 +49,7 @@ class PostListView extends ConsumerWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(dataPost[index].title!),
-            subtitle: Text(dataPost[index].userId!.toString()),
+            subtitle: Text(dataPost[index].body!.toString()),
           );
         },
         itemCount: dataPost.length,
