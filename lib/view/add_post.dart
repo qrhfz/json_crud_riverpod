@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:json_crud/model/post_model.dart';
+import '/service/data_service.dart';
 
 class AddPost extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   final _titleTxtCtrl = TextEditingController();
   final _bodyTxtCtrl = TextEditingController();
+  DataService dataService = DataService();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,21 @@ class _AddPostState extends State<AddPost> {
               height: 16,
             ),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  var statusCode = await dataService.createPost(
+                    PostModel(
+                      body: _bodyTxtCtrl.text,
+                      title: _titleTxtCtrl.text,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(statusCode == '201' ? 'Sukses' : 'Gagal')));
+                } on CustomException catch (e) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(e.message)));
+                }
+              },
               icon: Icon(Icons.send),
               label: Text('Save'),
             )

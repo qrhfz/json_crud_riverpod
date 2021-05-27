@@ -28,7 +28,7 @@ class DataService {
     }
   }
 
-  Future createPost(PostModel post) async {
+  Future<String> createPost(PostModel post) async {
     try {
       var response = await dio.post(
         '/posts',
@@ -42,8 +42,10 @@ class DataService {
           headers: {'Content-type': 'application/json; charset=UTF-8'},
         ),
       );
-
-      print('Respons create: ' + response.toString());
+      if (response.statusCode == 201) {
+        print('Respons create: ' + response.toString());
+      }
+      return response.statusCode.toString();
     } on DioError catch (_) {
       throw new CustomException(message: 'Dio Error gan');
     } on Exception catch (_) {
