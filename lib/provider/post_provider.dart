@@ -16,9 +16,13 @@ class PostNotifier extends StateNotifier<List<PostModel>> {
   }
 
   Future getReadPost() async {
-    var newState = await _dataService.readPost();
-    if (mounted) {
-      state = newState;
+    try {
+      var newState = await _dataService.readPost();
+      if (mounted) {
+        state = newState;
+      }
+    } on Exception catch (e) {
+      print(e);
     }
   }
 }

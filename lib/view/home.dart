@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_crud/model/post_model.dart';
@@ -43,14 +44,18 @@ class PostListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, watch) {
     final dataPost = watch(postProvider);
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(dataPost[index].title!),
-          subtitle: Text(dataPost[index].userId!.toString()),
-        );
-      },
-      itemCount: dataPost.length,
-    );
+    if (dataPost.isNotEmpty) {
+      return ListView.builder(
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(dataPost[index].title!),
+            subtitle: Text(dataPost[index].userId!.toString()),
+          );
+        },
+        itemCount: dataPost.length,
+      );
+    } else {
+      return Text('Kosong');
+    }
   }
 }
