@@ -39,6 +39,14 @@ class _AddPostState extends State<AddPost> {
               ),
               controller: _bodyTxtCtrl,
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.send),
+              label: Text('Save'),
+            )
           ],
         ),
       ),
