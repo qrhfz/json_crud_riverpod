@@ -10,20 +10,15 @@ class DataService {
   final dio = Dio(BaseOptions(baseUrl: urlApi));
 
   Future<List<PostModel>> readPost() async {
-    try {
-      var response = await dio.get(
-        '/posts',
-        options: Options(
-          responseType: ResponseType.plain,
-        ),
-      );
+    var response = await dio.get(
+      '/posts',
+      options: Options(
+        responseType: ResponseType.plain,
+      ),
+    );
 
-      var jsonRes = json.decode(response.toString());
-      return (jsonRes as List).map((e) => PostModel.fromJson(e)).toList();
-    } catch (e) {
-      print("Data Service :" + e.toString());
-      return [];
-    }
+    var jsonRes = json.decode(response.toString());
+    return (jsonRes as List).map((e) => PostModel.fromJson(e)).toList();
   }
 }
 
