@@ -1,10 +1,10 @@
 // ignore: unused_import
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:json_crud/model/post_model.dart';
-import 'package:json_crud/provider/post_provider.dart';
-import 'package:json_crud/service/data_service.dart';
+
+import '/model/post_model.dart';
+import '/service/data_service.dart';
+import '/widgets/post_list_view_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -26,39 +26,34 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: PostListView(),
       ),
-    );
-  }
-}
-
-class PostListView extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, watch) {
-    final dataPost = watch(postProvider);
-    return dataPost.when(
-        data: (data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(data[index].title!),
-                subtitle: buildPostBodyExcerpt(data[index].body!.toString()),
-                trailing: Icon(Icons.play_arrow),
-              );
-            },
-            itemCount: data.length,
-          );
-        },
-        loading: () => SizedBox(
-              child: CircularProgressIndicator(),
-              height: 50,
-              width: 50,
+      bottomSheet: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(16),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
             ),
-        error: (e, s) => Text(e.toString()));
-  }
-
-  Widget buildPostBodyExcerpt(String body) {
-    var bodyExcerpt = (body.length < 100)
-        ? body.replaceAll("\n", " ")
-        : body.substring(0, 96).replaceAll("\n", " ") + '...';
-    return Text(bodyExcerpt);
+          ],
+        ),
+        // color: Theme.of(context).accentColor,
+        width: double.infinity,
+        child: IconButton(
+          icon: Icon(Icons.add_box),
+          color: Theme.of(context).accentColor,
+          onPressed: () {
+            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //   content: Text('boop'),
+            //   duration: Duration(milliseconds: 500),
+            // ));
+          },
+        ),
+      ),
+    );
   }
 }
