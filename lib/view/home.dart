@@ -1,6 +1,7 @@
 // ignore: unused_import
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:json_crud/router/router.dart';
 
 import '/model/post_model.dart';
 import '/service/data_service.dart';
@@ -47,10 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: Icon(Icons.add_box),
           color: Theme.of(context).accentColor,
           onPressed: () {
-            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //   content: Text('boop'),
-            //   duration: Duration(milliseconds: 500),
-            // ));
+            Navigator.pushNamed(context, addPostRoute);
           },
         ),
       ),

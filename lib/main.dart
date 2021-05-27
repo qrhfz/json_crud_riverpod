@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:json_crud/router/router.dart';
 
 import 'view/home.dart';
 
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      // home: MyHomePage(),
+      onGenerateRoute: MyRouter.generateRoute,
+      initialRoute: '/',
     );
   }
 }
