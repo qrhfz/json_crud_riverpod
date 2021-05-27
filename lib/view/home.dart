@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_crud/model/post_model.dart';
-import 'package:json_crud/provider/post_provider.dart';
 import 'package:json_crud/service/data_service.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -16,16 +14,16 @@ class _MyHomePageState extends State<MyHomePage> {
   DataService dataService = DataService();
   List<PostModel> dataPost = [];
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   dataService.readPost().then((value) {
-  //     setState(() {
-  //       dataPost = value;
-  //     });
-  //   });
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dataService.readPost().then((value) {
+      setState(() {
+        dataPost = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +32,20 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Home'),
       ),
       body: Center(
-        child: PostListView(),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(dataPost[index].title!),
+              subtitle: Text(dataPost[index].userId!.toString()),
+            );
+          },
+          itemCount: dataPost.length,
+        ),
       ),
     );
   }
 }
+<<<<<<< HEAD
 
 class PostListView extends ConsumerWidget {
   @override
@@ -59,3 +66,5 @@ class PostListView extends ConsumerWidget {
     }
   }
 }
+=======
+>>>>>>> parent of 9bbf324 (PostListView widget)
