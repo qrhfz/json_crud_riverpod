@@ -56,6 +56,7 @@ class _AddPostState extends State<AddPost> {
                   );
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(statusCode == '201' ? 'Sukses' : 'Gagal')));
+                  Navigator.pop(context);
                 } on CustomException catch (e) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(e.message)));
