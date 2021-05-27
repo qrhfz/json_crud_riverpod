@@ -56,8 +56,9 @@ class PostListView extends ConsumerWidget {
   }
 
   Widget buildPostBodyExcerpt(String body) {
-    var bodyExcerpt =
-        (body.length < 100) ? body : body.substring(0, 96) + '...';
+    var bodyExcerpt = (body.length < 100)
+        ? body.replaceAll("\n", " ")
+        : body.substring(0, 96).replaceAll("\n", " ") + '...';
     return Text(bodyExcerpt);
   }
 }
